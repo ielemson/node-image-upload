@@ -26,6 +26,12 @@
             background-color: #ef5350;
             color: white;
         }
+
+        .msg-info {
+            border-color: #0288d1;
+            background-color: #29b6f6;
+            color: white;
+        }
     </style>
 </head>
 
@@ -35,7 +41,7 @@
     <div class="container">
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
+                <a href="#" class="brand-logo">image upload</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="sass.html">Sass</a></li>
                     <li><a href="badges.html">Components</a></li>
@@ -49,7 +55,8 @@
                 <br><br>
                 <h1 class="header center teal-text text-lighten-2">Node JavaScript File Upload</h1>
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design
+                    <h5 class="header col s12 light">A modern responsive image upload snipped built with expres js ,
+                        embedded js, node..
                     </h5>
                 </div>
 
@@ -60,6 +67,13 @@
             <% if (typeof msg !='undefined') { %>
 
             <div class="msg msg-error z-depth-3 scale-transition"> <%= msg%> </div>
+            <% }else{ %>
+            <h2><%= " "%></h2>
+            <%}%>
+
+            <% if (typeof msg_info !='undefined') { %>
+            <div class="msg msg-info z-depth-3"><%= msg_info %></div>
+
             <% }else{ %>
             <h2><%= " "%></h2>
             <%}%>
@@ -86,7 +100,7 @@
             </form>
           
         </div>
-        <div class="card">
+        <div>
             <div>
               <img class="responsive-img" src="<%= typeof file != 'undefined' ? file: ''%>">
         </div>
