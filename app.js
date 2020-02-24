@@ -19,8 +19,28 @@ const storage = multer.diskStorage({
 //init upload variable
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 10 }
+  limits: { fileSize: 1024 * 1024 * 5 },
+  fileFilter: function(req, file, cb) {
+    checkFileType(file, cb);
+  }
 }).single("img-upload");
+
+//check file typ
+function checkFileType(file, cb) {
+  // allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  //check extens
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+  //check mime type
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    return cb("Error:Images only");
+  }
+}
 //init our variables
 const app = express();
 
