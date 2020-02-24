@@ -30,6 +30,11 @@ app.set("view engine", "ejs");
 app.use(express.static("./public"));
 //index route
 app.get("/", (req, res) => res.render("index"));
+
+//set up post route
+app.post("/upload", (req, res) => {
+  res.send("text");
+});
 //create port number
 const port = 3500;
 app.listen(port, () => {
