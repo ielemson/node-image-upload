@@ -18,7 +18,8 @@ const storage = multer.diskStorage({
 
 //init upload variable
 const upload = multer({
-  storage: storage
+  storage: storage,
+  limits: { fileSize: 10 }
 }).single("img-upload");
 //init our variables
 const app = express();
@@ -33,7 +34,14 @@ app.get("/", (req, res) => res.render("index"));
 
 //set up post route
 app.post("/upload", (req, res) => {
-  res.send("text");
+  upload(req, res, err => {
+    if (err) {
+      res.render("index", { msg: err });
+    } else {
+      console.log(req.file);
+      res.send("test");
+    }
+  });
 });
 //create port number
 const port = 3500;
