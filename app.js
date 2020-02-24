@@ -58,8 +58,16 @@ app.post("/upload", (req, res) => {
     if (err) {
       res.render("index", { msg: err });
     } else {
-      console.log(req.file);
-      res.send("test");
+      if (req.file == undefined) {
+        res.render("index", {
+          msg: "Error:No File Found"
+        });
+      } else {
+        res.render("index", {
+          msg: "File Uploaded",
+          file: `uploads/${req.file.filename}`
+        });
+      }
     }
   });
 });
